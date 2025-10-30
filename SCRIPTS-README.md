@@ -2,6 +2,8 @@
 
 This directory contains helper scripts for managing all video project repositories.
 
+**Location**: These scripts live in `v-shared` and operate on all sibling repos.
+
 ## Available Scripts
 
 ### `./sync-all.sh` - Daily Sync (Pull All Repos)
@@ -9,6 +11,7 @@ This directory contains helper scripts for managing all video project repositori
 **Usage**: Run this at the start of each day to pull latest changes from all repos.
 
 ```bash
+cd v-shared
 ./sync-all.sh
 ```
 
@@ -33,6 +36,7 @@ This directory contains helper scripts for managing all video project repositori
 **Usage**: Check the git status of all repos at once.
 
 ```bash
+cd v-shared
 ./status-all.sh
 ```
 
@@ -49,6 +53,7 @@ This directory contains helper scripts for managing all video project repositori
 **Usage**: For initial setup - clone all repos at once.
 
 ```bash
+cd v-shared
 ./clone-all.sh
 ```
 
@@ -71,7 +76,7 @@ This directory contains helper scripts for managing all video project repositori
 
 **Start of day**:
 ```bash
-cd /Users/davidcruwys/dev/video-projects
+cd v-shared
 ./sync-all.sh
 ```
 
@@ -81,6 +86,7 @@ cd /Users/davidcruwys/dev/video-projects
 
 **Before ending day** (optional):
 ```bash
+cd v-shared
 ./status-all.sh  # Check what you changed today
 ```
 
@@ -97,12 +103,14 @@ Scripts don't auto-push to avoid accidentally pushing unfinished work.
 ## Directory Structure
 
 ```
-/Users/davidcruwys/dev/video-projects/
-├── sync-all.sh              # Daily sync script
-├── status-all.sh            # Check all repo status
-├── clone-all.sh             # Initial setup for Jan
-├── SCRIPTS-README.md        # This file
-├── v-shared/                # Shared documentation (git repo)
+video-projects/              # Parent directory (NOT a git repo)
+├── v-shared/                # Shared documentation (git repo) ⭐
+│   ├── sync-all.sh          # Daily sync script
+│   ├── status-all.sh        # Check all repo status
+│   ├── clone-all.sh         # Initial setup script
+│   ├── SCRIPTS-README.md    # This file
+│   ├── CLAUDE.md            # Shared documentation
+│   └── README.md            # Overview
 ├── v-appydave/              # AppyDave brand (git repo)
 ├── v-voz/                   # VOZ client (git repo)
 ├── v-aitldr/                # AITLDR brand (git repo)
@@ -111,7 +119,7 @@ Scripts don't auto-push to avoid accidentally pushing unfinished work.
 └── v-supportsignal/         # SupportSignal client (git repo)
 ```
 
-**Note**: The parent directory itself (`/Users/davidcruwys/dev/video-projects/`) is NOT a git repo - it's just a container for the individual repos and helper scripts.
+**Note**: The parent directory is NOT a git repo - it's just a container for the individual repos.
 
 ---
 
