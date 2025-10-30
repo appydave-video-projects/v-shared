@@ -231,83 +231,10 @@ While video files (*.mp4, *.mov, etc.) are normally gitignored throughout the pr
 ### Large File Storage
 - **Active projects**: AWS S3 Standard (~100GB, $2.30/month)
 - **Archives**: AWS S3 Glacier (~1TB, $0.99/month)
-- **Backup**: T7 drive at `/Volumes/T7/youtube-PUBLISHED/`
+- **Backup**: External SSD (mount path configured per developer)
 
 ### Future: Individual Git Repos
 Each `v-*` directory CAN become its own git repository for team collaboration, but currently all projects are tracked in the parent repository.
-
-## Migration Commands
-
-### Current Migration (Phase 3 - In Progress)
-
-**Migration Strategy**: Copy to T7 → Verify → Move to v-appydave/
-
-**Test migration (single project)**:
-```bash
-# Step 1: Copy to T7 backup
-PROJECT="b62-remotion-overview"
-cp -R ~/videos/$PROJECT /Volumes/T7/youtube-PUBLISHED/appydave/b50-b99/$PROJECT
-
-# Step 2: Verify T7 copy
-diff -r ~/videos/$PROJECT /Volumes/T7/youtube-PUBLISHED/appydave/b50-b99/$PROJECT
-du -sh ~/videos/$PROJECT
-du -sh /Volumes/T7/youtube-PUBLISHED/appydave/b50-b99/$PROJECT
-
-# Step 3: Move to new location (only if verification passed)
-mv ~/videos/$PROJECT ~/dev/video-projects/v-appydave/$PROJECT
-
-# Step 4: Verify final location
-ls -lh ~/dev/video-projects/v-appydave/$PROJECT
-```
-
-**Batch migration** (all AppyDave videos):
-```bash
-# Determine T7 folder based on project number
-get_t7_folder() {
-  local num=$(echo "$1" | grep -oE 'b[0-9]+' | grep -oE '[0-9]+')
-  if [ "$num" -lt 50 ]; then
-    echo "/Volumes/T7/youtube-PUBLISHED/appydave/b00-b49"
-  else
-    echo "/Volumes/T7/youtube-PUBLISHED/appydave/b50-b99"
-  fi
-}
-
-# Process each project with copy-verify-move
-for source_dir in ~/videos/b*; do
-  [ -d "$source_dir" ] || continue
-  project=$(basename "$source_dir")
-  t7_dest="$(get_t7_folder "$project")/$project"
-  final_dest="$HOME/dev/video-projects/v-appydave/$project"
-
-  echo "Processing: $project"
-  cp -R "$source_dir" "$t7_dest"
-  diff -r "$source_dir" "$t7_dest" && mv "$source_dir" "$final_dest"
-done
-```
-
-**Verification**:
-```bash
-# Count projects in each location
-ls /Volumes/T7/youtube-PUBLISHED/appydave/b00-b49/ | grep '^b' | wc -l
-ls /Volumes/T7/youtube-PUBLISHED/appydave/b50-b99/ | grep '^b' | wc -l
-ls ~/dev/video-projects/v-appydave/ | grep '^b' | wc -l
-ls ~/videos/ | grep '^b' | wc -l  # Should be 0 when done
-
-# Check sizes
-du -sh ~/dev/video-projects/v-appydave/
-```
-
-**Rollback**:
-```bash
-# Restore from T7 if needed
-cp -R /Volumes/T7/youtube-PUBLISHED/appydave/b50-b99/b62-remotion-overview ~/videos/
-```
-
-### Migration Status (2025-10-20)
-- ✅ **Completed**: b62-remotion-overview (T7 backup + moved)
-- ✅ **Completed**: b63-remotion-tutorial (copied to v-appydave/, needs T7 backup)
-- ⏳ **Remaining**: 21 projects (b40-b61, excluding b62-b63)
-- ❌ **Abandoned**: b47, b50 (move to T7:/youtube-FAILS/)
 
 ## Metadata System (Proposed)
 
@@ -332,8 +259,8 @@ cp -R /Volumes/T7/youtube-PUBLISHED/appydave/b50-b99/b62-remotion-overview ~/vid
 ```
 
 **Links**:
-- Code projects: `/dev/ad/appydave-app-a-day/{project}/`
-- Content pillars: `/dev/ad/appydave-brand/content-pillars/{pillar}/`
+- Code projects: AppyDave app-a-day projects
+- Content pillars: AppyDave brand content pillar system
 - Related series: Other b{number} projects
 
 ## Related Tools & Projects
@@ -459,12 +386,10 @@ touch v-voz/new-project/visual-storytelling-pipeline.md
 
 ## Documentation References
 
-- `/dev/video-projects/README.md` - Main repository overview
-- `/dev/video-projects/PHASE-3-MIGRATION-PLAN.md` - Migration strategy and status
-- `/dev/video-projects/MIGRATION-STRATEGY-V2.md` - Copy-to-T7-then-Move commands
-- `/dev/ad/CLAUDE.md` - Overall ecosystem map
-- `/dev/ad/flivideo/CLAUDE.md` - FliVideo workflow details
-- `/dev/ad/storyline-app/CLAUDE.md` - Storyline workflow details
+- `v-shared/README.md` - Shared documentation overview
+- AppyDave ecosystem CLAUDE.md - Overall ecosystem map
+- FliVideo CLAUDE.md - FliVideo workflow details
+- Storyline App CLAUDE.md - Storyline workflow details
 - Individual project `CLAUDE.md` files (e.g., `v-voz/the-point/CLAUDE.md`)
 
 ## Key Reminders
@@ -472,13 +397,12 @@ touch v-voz/new-project/visual-storytelling-pipeline.md
 1. **Large video files are gitignored** - Never commit .mp4, .mov, .avi files
 2. **Always track transcripts** - .srt and .txt files must be version-controlled
 3. **Use appropriate workflow** - FliVideo for sequential, Storyline for narrative
-4. **Backup before migration** - T7 drive copy before any file moves
+4. **Backup before operations** - Always backup to external SSD before making changes
 5. **storyline.json is sacred** - For Storyline projects, this is the single source of truth
-6. **Cross-reference with /dev/ad/** - Video projects often link to code projects and content pillars
+6. **Cross-reference with code projects** - Video projects often link to code projects and content pillars
 
 ---
 
-**Repository Location**: `/Users/davidcruwys/dev/video-projects/`
 **Created**: 2025-10-19
-**Last Updated**: 2025-10-20
-**Purpose**: Unified video project storage across all brands and clients
+**Last Updated**: 2025-10-30
+**Purpose**: Shared documentation for unified video project storage across all brands and clients
