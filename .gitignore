@@ -15,3 +15,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# AI Model Research - Video files (too large for git)
+ai-model-research/videos/
