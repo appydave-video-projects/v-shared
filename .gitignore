@@ -1,0 +1,17 @@
+# Video Projects Shared Docs .gitignore
+
+# OS files
+.DS_Store
+**/.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
