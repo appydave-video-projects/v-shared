@@ -1,0 +1,889 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-31",
+  "verificationStatus": "NEEDS_VERIFICATION",
+  "notes": "This data needs to be manually verified by visiting each tool's pricing page. DO NOT trust secondary sources. Check the actual website.",
+
+  "tools": [
+    {
+      "id": "hailuo-ai",
+      "name": "Hailuo AI",
+      "url": "https://hailuoai.com",
+      "pricingUrl": "https://hailuoai.com/pricing",
+      "country": "CN",
+      "category": "hybrid",
+      "features": {
+        "image": true,
+        "video": true,
+        "api": "unknown"
+      },
+      "freeTier": {
+        "available": true,
+        "description": "One-time welcome credits only (no recurring daily credits)",
+        "credits": null,
+        "imagesPerDay": null,
+        "videosPerDay": null,
+        "notes": "Free daily credits were removed in mid-2025"
+      },
+      "pricingTiers": [
+        {
+          "name": "Standard",
+          "monthly": {
+            "price": 14.99,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "credits": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "VERIFY THIS - reported as $14.99/mo but needs confirmation"
+        },
+        {
+          "name": "Pro",
+          "monthly": {
+            "price": 89.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": 63.00,
+            "pricePerMonth": 63.00,
+            "currency": "USD",
+            "totalAnnual": 756.00,
+            "billingCycle": "annual"
+          },
+          "credits": null,
+          "features": [],
+          "verificationStatus": "PARTIALLY_VERIFIED",
+          "verificationDate": "2025-10-31",
+          "notes": "David verified: monthly=$89, annual=$63/mo. Previous research incorrectly stated $54.99"
+        },
+        {
+          "name": "Master",
+          "monthly": {
+            "price": 119.99,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "credits": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "VERIFY annual pricing"
+        }
+      ],
+      "apiPricing": {
+        "available": "unknown",
+        "payPerUse": null,
+        "notes": "API mentioned but not verified"
+      },
+      "costPerImage": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Cannot estimate without knowing credit system"
+      },
+      "costPerVideo": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Cannot estimate without knowing credit system"
+      },
+      "verificationNotes": "NEEDS FULL VERIFICATION - Visit https://hailuoai.com/pricing and verify all tiers, monthly vs annual pricing, credit systems"
+    },
+
+    {
+      "id": "dreamina",
+      "name": "Dreamina",
+      "url": "https://dreamina.com",
+      "pricingUrl": "https://dreamina.com/pricing",
+      "country": "CN",
+      "provider": "ByteDance",
+      "category": "hybrid",
+      "models": ["Seedream 4.0", "Seedance 1.0"],
+      "features": {
+        "image": true,
+        "video": true,
+        "api": true,
+        "apiProvider": "BytePlus"
+      },
+      "freeTier": {
+        "available": true,
+        "description": "150 credits per day",
+        "credits": 150,
+        "imagesPerDay": 50,
+        "videosPerDay": null,
+        "notes": "Best free tier - 50 images/day estimated from 150 credits"
+      },
+      "pricingTiers": [
+        {
+          "name": "Basic",
+          "monthly": {
+            "price": 19.90,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "credits": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "VERIFY monthly vs annual pricing"
+        },
+        {
+          "name": "Plus",
+          "monthly": {
+            "price": 39.90,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "credits": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        },
+        {
+          "name": "Pro",
+          "monthly": {
+            "price": 69.90,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "credits": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        }
+      ],
+      "apiPricing": {
+        "available": true,
+        "provider": "BytePlus",
+        "apiUrl": "https://www.byteplus.com/en/product/Seedream",
+        "payPerUse": true,
+        "pricePerImage": 0.03,
+        "currency": "USD",
+        "freeCredits": 200,
+        "notes": "200 free images for new API users, then $0.03/image"
+      },
+      "costPerImage": {
+        "estimated": 0.03,
+        "verified": false,
+        "notes": "API pricing is $0.03/image, SaaS cost-per-image depends on credit system"
+      },
+      "costPerVideo": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Unknown - credits shared between images and videos"
+      },
+      "verificationNotes": "VERIFY: Free tier details, monthly vs annual pricing, credit consumption rates"
+    },
+
+    {
+      "id": "ideogram",
+      "name": "Ideogram",
+      "url": "https://ideogram.ai",
+      "pricingUrl": "https://ideogram.ai/pricing",
+      "country": "US",
+      "category": "image-only",
+      "features": {
+        "image": true,
+        "video": false,
+        "api": false,
+        "canvas": true,
+        "characterConsistency": true
+      },
+      "freeTier": {
+        "available": true,
+        "description": "Limited slow credits + Limited Canvas access",
+        "priorityCredits": 0,
+        "slowCredits": "limited",
+        "canvasAccess": "limited",
+        "imagesPerDay": null,
+        "videosPerDay": 0,
+        "notes": "Free tier has limited slow credits (no specific daily limit stated)"
+      },
+      "pricingTiers": [
+        {
+          "name": "Basic",
+          "monthly": {
+            "price": 8.00,
+            "currency": "USD",
+            "billingCycle": "monthly",
+            "discount": "0%"
+          },
+          "annual": {
+            "price": 7.00,
+            "pricePerMonth": 7.00,
+            "currency": "USD",
+            "totalAnnual": 84.00,
+            "billingCycle": "annual",
+            "discount": "12%"
+          },
+          "credits": {
+            "priority": 400,
+            "priorityPeriod": "month",
+            "slow": 100,
+            "slowPeriod": "day"
+          },
+          "features": [
+            "400 priority credits / month",
+            "100 slow credits / day",
+            "Queue multiple generations",
+            "Edit in Canvas (no image upload)",
+            "Quality export"
+          ],
+          "topUp": {
+            "credits": 100,
+            "price": 4.00,
+            "currency": "USD",
+            "type": "priority"
+          },
+          "verificationStatus": "VERIFIED",
+          "verificationDate": "2025-10-31",
+          "verifiedBy": "David",
+          "notes": "Billed yearly = $7/mo (12% discount), monthly = $8/mo"
+        },
+        {
+          "name": "Plus",
+          "monthly": {
+            "price": 20.00,
+            "currency": "USD",
+            "billingCycle": "monthly",
+            "discount": "0%"
+          },
+          "annual": {
+            "price": 15.00,
+            "pricePerMonth": 15.00,
+            "currency": "USD",
+            "totalAnnual": 180.00,
+            "billingCycle": "annual",
+            "discount": "25%"
+          },
+          "credits": {
+            "priority": 1000,
+            "priorityPeriod": "month",
+            "slow": "unlimited",
+            "slowPeriod": "day"
+          },
+          "features": [
+            "Private generation",
+            "Upload images to edit and remix",
+            "Character Consistency",
+            "1,000 priority credits / month",
+            "Unlimited slow credits",
+            "Larger generation queue",
+            "Quality export"
+          ],
+          "topUp": {
+            "credits": 150,
+            "price": 4.00,
+            "currency": "USD",
+            "type": "priority"
+          },
+          "verificationStatus": "VERIFIED",
+          "verificationDate": "2025-10-31",
+          "verifiedBy": "David",
+          "notes": "Most popular tier. Billed yearly = $15/mo (25% discount), monthly = $20/mo"
+        },
+        {
+          "name": "Pro",
+          "monthly": {
+            "price": 60.00,
+            "currency": "USD",
+            "billingCycle": "monthly",
+            "discount": "0%"
+          },
+          "annual": {
+            "price": 42.00,
+            "pricePerMonth": 42.00,
+            "currency": "USD",
+            "totalAnnual": 504.00,
+            "billingCycle": "annual",
+            "discount": "30%"
+          },
+          "credits": {
+            "priority": 3500,
+            "priorityPeriod": "month",
+            "slow": "unlimited",
+            "slowPeriod": "day"
+          },
+          "features": [
+            "Private generation",
+            "Upload images to edit and remix",
+            "Character Consistency",
+            "3,500 priority credits / month",
+            "Unlimited slow credits",
+            "The largest generation queue",
+            "Batch Generation",
+            "The best cost per credit"
+          ],
+          "topUp": {
+            "credits": 250,
+            "price": 4.00,
+            "currency": "USD",
+            "type": "priority"
+          },
+          "verificationStatus": "VERIFIED",
+          "verificationDate": "2025-10-31",
+          "verifiedBy": "David",
+          "notes": "Billed yearly = $42/mo (30% discount), monthly = $60/mo"
+        }
+      ],
+      "apiPricing": {
+        "available": false,
+        "notes": "SaaS only, no public API"
+      },
+      "costPerImage": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Depends on tier and generation speed (slow vs priority). Priority credits consume faster than slow."
+      },
+      "verificationNotes": "VERIFIED 2025-10-31. Note: Annual pricing offers 12-30% discount. Character Consistency only in Plus/Pro tiers."
+    },
+
+    {
+      "id": "leonardo-ai",
+      "name": "Leonardo.ai",
+      "url": "https://leonardo.ai",
+      "pricingUrl": "https://leonardo.ai/pricing",
+      "country": "US",
+      "category": "image-only",
+      "features": {
+        "image": true,
+        "video": false,
+        "api": false
+      },
+      "freeTier": {
+        "available": true,
+        "description": "150 tokens per day",
+        "credits": 150,
+        "imagesPerDay": 150,
+        "videosPerDay": 0,
+        "notes": "Best free tier for high volume testing"
+      },
+      "pricingTiers": [
+        {
+          "name": "Apprentice",
+          "monthly": {
+            "price": 12.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "tokens": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "VERIFY annual pricing and token allocation"
+        },
+        {
+          "name": "Artisan",
+          "monthly": {
+            "price": 30.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "tokens": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        },
+        {
+          "name": "Maestro",
+          "monthly": {
+            "price": 60.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "tokens": null,
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        }
+      ],
+      "apiPricing": {
+        "available": false,
+        "notes": "Check if API recently launched"
+      },
+      "costPerImage": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Token system - cost depends on model and settings used"
+      },
+      "verificationNotes": "VERIFY: Annual pricing, token allocations per tier, API availability"
+    },
+
+    {
+      "id": "higgsfield",
+      "name": "Higgsfield",
+      "url": "https://higgsfield.ai",
+      "pricingUrl": "https://higgsfield.ai/pricing",
+      "country": "US",
+      "category": "hybrid",
+      "features": {
+        "image": true,
+        "video": true,
+        "api": true,
+        "apiTier": "Creator ($249/mo)"
+      },
+      "freeTier": {
+        "available": true,
+        "description": "2 images + 5 videos per day",
+        "credits": null,
+        "imagesPerDay": 2,
+        "videosPerDay": 5,
+        "notes": "Good for video testing"
+      },
+      "pricingTiers": [
+        {
+          "name": "Basic",
+          "monthly": {
+            "price": 9.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "Cheapest image+video hybrid tool"
+        },
+        {
+          "name": "Pro",
+          "monthly": {
+            "price": 17.40,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        },
+        {
+          "name": "Ultimate",
+          "monthly": {
+            "price": 29.40,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        },
+        {
+          "name": "Creator",
+          "monthly": {
+            "price": 249.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "features": ["API access"],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "Only tier with API access - expensive"
+        }
+      ],
+      "apiPricing": {
+        "available": true,
+        "minimumTier": "Creator",
+        "minimumPrice": 249.00,
+        "notes": "API only available in $249/mo Creator tier - impractical for budget projects"
+      },
+      "costPerImage": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Credit system - depends on tier"
+      },
+      "costPerVideo": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Credit system - depends on video length and quality"
+      },
+      "verificationNotes": "VERIFY: Annual pricing, credit allocations, Soul generator credits"
+    },
+
+    {
+      "id": "ltx-studio",
+      "name": "LTX Studio",
+      "url": "https://ltx.studio",
+      "pricingUrl": "https://ltx.studio/pricing",
+      "country": "US",
+      "category": "hybrid",
+      "features": {
+        "image": true,
+        "video": true,
+        "api": false
+      },
+      "freeTier": {
+        "available": true,
+        "description": "800 CS one-time OR 8000 CS/month (CONFLICTING SOURCES)",
+        "credits": 800,
+        "imagesPerDay": null,
+        "videosPerDay": null,
+        "notes": "CONFLICTING INFORMATION - needs verification"
+      },
+      "pricingTiers": [
+        {
+          "name": "Lite",
+          "monthly": {
+            "price": 15.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        },
+        {
+          "name": "Standard",
+          "monthly": {
+            "price": 35.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        },
+        {
+          "name": "Pro",
+          "monthly": {
+            "price": 125.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": null,
+            "pricePerMonth": null,
+            "currency": "USD",
+            "totalAnnual": null,
+            "billingCycle": "annual"
+          },
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null
+        }
+      ],
+      "apiPricing": {
+        "available": false,
+        "notes": "API status unclear"
+      },
+      "costPerImage": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Computing seconds model - depends on complexity"
+      },
+      "costPerVideo": {
+        "estimated": null,
+        "verified": false,
+        "notes": "Computing seconds model - depends on video length and quality"
+      },
+      "verificationNotes": "URGENT: Verify free tier (800 vs 8000 CS), verify all pricing, verify what CS (computing seconds) actually means"
+    },
+
+    {
+      "id": "recraft",
+      "name": "Recraft",
+      "url": "https://recraft.ai",
+      "pricingUrl": "https://recraft.ai/pricing",
+      "country": "US",
+      "category": "image-only",
+      "features": {
+        "image": true,
+        "video": false,
+        "api": true,
+        "apiProvider": "fal.ai"
+      },
+      "freeTier": {
+        "available": true,
+        "description": "50 credits per day",
+        "credits": 50,
+        "imagesPerDay": 50,
+        "videosPerDay": 0,
+        "notes": "Best free tier for raster images (tied with Dreamina)"
+      },
+      "pricingTiers": [
+        {
+          "name": "Professional",
+          "monthly": {
+            "price": 12.00,
+            "currency": "USD",
+            "billingCycle": "monthly"
+          },
+          "annual": {
+            "price": 10.00,
+            "pricePerMonth": 10.00,
+            "currency": "USD",
+            "totalAnnual": 120.00,
+            "billingCycle": "annual"
+          },
+          "features": [],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "VERIFY annual pricing discount"
+        }
+      ],
+      "apiPricing": {
+        "available": true,
+        "provider": "fal.ai",
+        "apiUrl": "https://fal.ai/models/recraft-v3",
+        "payPerUse": true,
+        "pricePerImage": null,
+        "notes": "Available via fal.ai - verify pay-per-use pricing"
+      },
+      "costPerImage": {
+        "estimated": null,
+        "verified": false,
+        "notes": "1 credit per raster, 2 credits per vector"
+      },
+      "verificationNotes": "VERIFY: Annual pricing, API pricing via fal.ai, credit consumption"
+    },
+
+    {
+      "id": "flux",
+      "name": "FLUX",
+      "url": "https://flux.ai",
+      "pricingUrl": null,
+      "country": "US",
+      "provider": "Black Forest Labs",
+      "category": "image-only",
+      "models": ["FLUX.1 Dev", "FLUX.1 Schnell", "FLUX.1 Kontext"],
+      "features": {
+        "image": true,
+        "video": false,
+        "api": true,
+        "apiProviders": ["Replicate", "fal.ai", "Together AI"]
+      },
+      "freeTier": {
+        "available": true,
+        "description": "Limited free credits on API providers",
+        "credits": null,
+        "imagesPerDay": null,
+        "videosPerDay": 0,
+        "notes": "Free tier depends on API provider (Replicate, fal.ai, etc.)"
+      },
+      "pricingTiers": [],
+      "apiPricing": {
+        "available": true,
+        "providers": [
+          {
+            "name": "Replicate",
+            "url": "https://replicate.com/black-forest-labs",
+            "pricePerImage": {
+              "min": 0.02,
+              "max": 0.05,
+              "currency": "USD"
+            },
+            "notes": "Pay-per-use, varies by model"
+          },
+          {
+            "name": "fal.ai",
+            "url": "https://fal.ai/models/fal-ai/flux-kontext",
+            "pricePerImage": {
+              "min": 0.02,
+              "max": 0.05,
+              "currency": "USD"
+            },
+            "notes": "VERIFY exact pricing"
+          },
+          {
+            "name": "Together AI",
+            "url": "https://api.together.xyz",
+            "pricePerImage": {
+              "min": 0.02,
+              "max": 0.05,
+              "currency": "USD"
+            },
+            "notes": "VERIFY exact pricing"
+          }
+        ]
+      },
+      "costPerImage": {
+        "estimated": 0.035,
+        "verified": false,
+        "notes": "Varies by provider and model (Dev vs Schnell vs Kontext)"
+      },
+      "verificationNotes": "VERIFY: Exact API pricing for each provider, free tier limits, which model is best for what"
+    },
+
+    {
+      "id": "stable-diffusion",
+      "name": "Stable Diffusion",
+      "url": "https://stability.ai",
+      "pricingUrl": "https://stability.ai/pricing",
+      "country": "US",
+      "provider": "Stability AI",
+      "category": "image-only",
+      "features": {
+        "image": true,
+        "video": false,
+        "api": true,
+        "local": true
+      },
+      "freeTier": {
+        "available": true,
+        "description": "Free if running locally with own GPU",
+        "credits": null,
+        "imagesPerDay": null,
+        "videosPerDay": 0,
+        "notes": "Unlimited free local generation with RTX 3060+ GPU"
+      },
+      "pricingTiers": [
+        {
+          "name": "Local (Self-Hosted)",
+          "monthly": {
+            "price": 0.00,
+            "currency": "USD",
+            "billingCycle": "one-time hardware cost"
+          },
+          "hardware": {
+            "gpu": "RTX 3060 12GB",
+            "priceNew": 279.00,
+            "priceUsed": 200.00,
+            "currency": "USD"
+          },
+          "features": ["Unlimited generation", "LoRA training", "Full control"],
+          "verificationStatus": "NEEDS_VERIFICATION",
+          "verificationDate": null,
+          "notes": "Hardware prices fluctuate - verify current GPU costs"
+        }
+      ],
+      "apiPricing": {
+        "available": true,
+        "providers": [
+          {
+            "name": "Stability AI (Official)",
+            "url": "https://stability.ai/api",
+            "pricePerImage": {
+              "min": 0.01,
+              "max": 0.03,
+              "currency": "USD"
+            },
+            "notes": "VERIFY current pricing"
+          },
+          {
+            "name": "Replicate",
+            "url": "https://replicate.com/stability-ai/sdxl",
+            "pricePerImage": {
+              "min": 0.01,
+              "max": 0.03,
+              "currency": "USD"
+            },
+            "notes": "VERIFY current pricing"
+          }
+        ],
+        "cloudGPU": {
+          "provider": "RunPod / Vast.ai",
+          "h100PricePerHour": {
+            "min": 1.99,
+            "max": 3.90,
+            "currency": "USD"
+          },
+          "notes": "For large-scale training/fine-tuning"
+        }
+      },
+      "costPerImage": {
+        "estimated": 0.00,
+        "estimatedCloud": 0.02,
+        "verified": false,
+        "notes": "Free if local, ~$0.01-0.03 if cloud API"
+      },
+      "verificationNotes": "VERIFY: GPU prices, cloud API pricing, H100 rental costs"
+    }
+  ]
+}

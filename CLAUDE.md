@@ -2,6 +2,23 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Table of Contents
+
+- [Repository Overview](#repository-overview)
+- [Directory Structure](#directory-structure)
+- [v-shared Specific Directories](#v-shared-specific-directories)
+  - [project-notes/](#project-notes) - David ↔ Jan task communication
+  - [ai-model-research/](#ai-model-research) - AI tool research & recommendations
+- [Two Workflow Patterns](#two-workflow-patterns)
+  - [FliVideo Workflow (AppyDave)](#pattern-a-flivideo-workflow-appydave)
+  - [Storyline Workflow (VOZ, AITLDR)](#pattern-b-storyline-workflow-voz-aitldr)
+- [Final Assets Directory](#final-assets-directory)
+- [Git Strategy](#git-strategy)
+- [Related Tools & Projects](#related-tools--projects)
+- [Common Tasks](#common-tasks)
+
+---
+
 ## Repository Overview
 
 This is a **unified video project storage repository** for all brands and clients in David Cruwys's ecosystem. Video files themselves are gitignored (stored on AWS S3 or T7 drive), while metadata, transcripts, configs, and documentation are version-controlled.
@@ -22,7 +39,14 @@ This is a **unified video project storage repository** for all brands and client
 ## Directory Structure
 
 ```
-video-projects/
+v-shared/                      # THIS REPOSITORY (shared resources)
+├── project-notes/             # David ↔ Jan task communication
+├── ai-model-research/         # AI image/video generation research
+├── scripts/                   # Shared automation scripts
+├── CLAUDE.md                  # This file
+└── README.md                  # Shared documentation
+
+video-projects/ (parent directory - OTHER REPOS)
 ├── v-appydave/          # AppyDave brand (FliVideo workflow, b40-b63+)
 ├── v-voz/               # VOZ client projects (Storyline workflow)
 ├── v-aitldr/            # AITLDR brand (Storyline workflow)
@@ -32,6 +56,49 @@ video-projects/
 ```
 
 **Naming Convention**: `v-{brand-name}` where prefix `v-` denotes video projects.
+
+---
+
+## v-shared Specific Directories
+
+### project-notes/
+**Purpose**: Communication hub for David and Jan about video project tasks
+
+**How it works**:
+- David creates task files (e.g., `task-ai-model-cost-research.md`)
+- Jan updates with progress, questions, blockers
+- Git-tracked for async collaboration
+
+**Active Tasks**:
+- `task-ai-model-cost-research.md` - Research AI image/video generation tools
+- `task-pixar-avatars-kiros-supportsignal.md` - Create client avatars
+
+**See**: `project-notes/README.md` for full workflow
+
+---
+
+### ai-model-research/
+**Purpose**: Research findings on AI image/video generation tools for movie production
+
+**Goal**: Find cheapest quality AI tools for generating images/videos
+
+**Documentation**:
+- `QUICK-START.md` - High-level summary (START HERE)
+- `AI-TOOL-DECISION-MATRIX.md` - Which tool for which use case?
+- `README.md` - Full research findings (10 tools)
+- `cost-analysis.md` - Detailed cost tables
+- `platforms.md` - SaaS vs API breakdown
+- `s3-setup-uat.md` - AWS S3 setup
+- `api-examples/` - Ready-to-run code
+
+**Status**: Research complete, free-tier testing next
+
+**Quick Links**:
+- Need recommendation? → `AI-TOOL-DECISION-MATRIX.md`
+- Want summary? → `QUICK-START.md`
+- Need details? → `README.md` and `cost-analysis.md`
+
+---
 
 ## Two Workflow Patterns
 
