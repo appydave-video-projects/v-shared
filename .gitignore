@@ -18,3 +18,10 @@ Thumbs.db
 
 # AI Model Research - Video files (too large for git)
 ai-model-research/videos/
+
+# Video Asset Tools - Environment configs (local paths per developer)
+.video-tools.env
+**/.video-tools.env
+
+# Video Asset Tools - Generated manifests (per-repo, not shared)
+**/projects.json

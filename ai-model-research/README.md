@@ -150,11 +150,11 @@ Ready-to-run code:
 - `s3-upload.js` - AWS S3 integration for large files
 
 ### ☁️ [s3-setup-uat.md](./s3-setup-uat.md)
-AWS S3 setup instructions:
+AWS S3 setup instructions for AI model testing:
 - IAM user creation
 - Permissions configuration
 - Credentials management
-- Upload/download scripts
+- Upload/download scripts for generated images/videos
 
 ---
 

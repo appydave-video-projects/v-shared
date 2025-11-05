@@ -34,7 +34,7 @@ This is a **unified video project storage repository** for all brands and client
 1. **FliVideo Workflow** - Sequential chapter-based recording (AppyDave brand videos)
 2. **Storyline Workflow** - Script-first narrative-driven content (VOZ, AITLDR)
 
-**Security**: Secret scanning enabled - see `SECURITY-SETUP.md` for protection against API keys/credentials
+**Security**: Secret scanning enabled - see `docs/security-setup.md` for protection against API keys/credentials
 
 ## Directory Structure
 
@@ -42,6 +42,18 @@ This is a **unified video project storage repository** for all brands and client
 v-shared/                      # THIS REPOSITORY (shared resources)
 ├── project-notes/             # David ↔ Jan task communication
 ├── ai-model-research/         # AI image/video generation research
+├── video-asset-tools/         # Video project archival & sync tools
+│   ├── bin/                   # Executable scripts
+│   ├── lib/                   # Ruby libraries
+│   ├── utils/                 # Utility scripts
+│   ├── docs/                  # Tool-specific documentation
+│   │   ├── migration-plan.md  # Design decisions
+│   │   └── roadmap.md         # S3/Glacier + team collab plans
+│   ├── README.md              # Tool documentation
+│   └── .env.example           # Config template
+├── docs/                      # v-shared documentation (org-wide)
+│   ├── security-setup.md      # GitHub secret scanning setup
+│   └── t7-sync-strategy.md    # SSD backup strategy
 ├── scripts/                   # Shared automation scripts
 ├── CLAUDE.md                  # This file
 └── README.md                  # Shared documentation
@@ -83,8 +95,8 @@ video-projects/ (parent directory - OTHER REPOS)
 **Goal**: Find cheapest quality AI tools for generating images/videos
 
 **Documentation**:
-- `QUICK-START.md` - High-level summary (START HERE)
-- `AI-TOOL-DECISION-MATRIX.md` - Which tool for which use case?
+- `quick-start.md` - High-level summary (START HERE)
+- `ai-tool-decision-matrix.md` - Which tool for which use case?
 - `README.md` - Full research findings (10 tools)
 - `cost-analysis.md` - Detailed cost tables
 - `platforms.md` - SaaS vs API breakdown
@@ -94,8 +106,8 @@ video-projects/ (parent directory - OTHER REPOS)
 **Status**: Research complete, free-tier testing next
 
 **Quick Links**:
-- Need recommendation? → `AI-TOOL-DECISION-MATRIX.md`
-- Want summary? → `QUICK-START.md`
+- Need recommendation? → `ai-tool-decision-matrix.md`
+- Want summary? → `quick-start.md`
 - Need details? → `README.md` and `cost-analysis.md`
 
 ---

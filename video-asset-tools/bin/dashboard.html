@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Projects Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 30px 0 30px;
+            color: white;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .last-updated {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 18px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+        }
+
+        .stat-pill strong {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .disk-usage-container {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 0;
+        }
+
+        .disk-usage-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6b7280;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .disk-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .disk-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .disk-stat-label {
+            font-size: 12px;
+            color: #9ca3af;
+            font-weight: 500;
+        }
+
+        .disk-stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            padding: 0 20px;
+            gap: 5px;
+        }
+
+        .tab {
+            padding: 16px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .tab:hover {
+            background: rgba(102, 126, 234, 0.08);
+            color: #667eea;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 0;
+            background: #fafbfc;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .search-bar {
+            padding: 20px 30px;
+            background: white;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .content-area {
+            padding: 30px;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #ddd;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .project-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .project-item.backed-up {
+            border-left-color: #10b981;
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.03), white);
+        }
+
+        .project-item.not-backed-up {
+            border-left-color: #f59e0b;
+            background: linear-gradient(to right, rgba(245, 158, 11, 0.03), white);
+        }
+
+        .project-item.fully-migrated {
+            border-left-color: #8b5cf6;
+            background: linear-gradient(to right, rgba(139, 92, 246, 0.03), white);
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .project-details {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .badge.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .badge.secondary {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+
+        .collapsible-group {
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .group-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            background: linear-gradient(to right, #f9fafb, white);
+            cursor: pointer;
+            font-weight: 600;
+            color: #374151;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .group-header:hover {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+        }
+
+        .group-header:hover .group-count {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .group-count {
+            font-size: 13px;
+            color: #9ca3af;
+            font-weight: 500;
+            background: #f3f4f6;
+            padding: 4px 12px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .group-content {
+            display: none;
+            padding: 16px;
+            background: #fafbfc;
+        }
+
+        .group-content.open {
+            display: block;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 40px;
+            color: #9ca3af;
+            background: white;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        .empty-state p:first-child {
+            font-size: 18px;
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .error {
+            background: linear-gradient(135deg, #fecaca, #fca5a5);
+            color: #7f1d1d;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Video Projects Dashboard</h1>
+                <div class="last-updated">Last Updated: <strong id="last-updated">-</strong></div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-pill">
+                    <span>Total Projects:</span>
+                    <strong id="total-count">-</strong>
+                </div>
+                <div class="stat-pill">
+                    <span>Local Flat:</span>
+                    <strong id="local-flat-count">-</strong>
+                </div>
+                <div class="stat-pill">
+                    <span>Local Grouped:</span>
+                    <strong id="local-grouped-count">-</strong>
+                </div>
+                <div class="stat-pill">
+                    <span>SSD:</span>
+                    <strong id="ssd-count">-</strong>
+                </div>
+            </div>
+
+            <div class="disk-usage-container">
+                <div class="disk-usage-title">Disk Usage</div>
+                <div class="disk-stats">
+                    <div class="disk-stat">
+                        <div class="disk-stat-label">Local Flat</div>
+                        <div class="disk-stat-value" id="local-flat-disk">-</div>
+                    </div>
+                    <div class="disk-stat">
+                        <div class="disk-stat-label">Local Grouped</div>
+                        <div class="disk-stat-value" id="local-grouped-disk">-</div>
+                    </div>
+                    <div class="disk-stat">
+                        <div class="disk-stat-label">SSD</div>
+                        <div class="disk-stat-value" id="ssd-disk">-</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="local-flat">
+                Local Flat <span id="tab-local-flat-count"></span>
+            </div>
+            <div class="tab" data-tab="ssd">
+                SSD <span id="tab-ssd-count"></span>
+            </div>
+            <div class="tab" data-tab="local-grouped">
+                Local Grouped <span id="tab-local-grouped-count"></span>
+            </div>
+        </div>
+
+        <div id="local-flat" class="tab-content active">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="search-local-flat" placeholder="Search local flat projects...">
+            </div>
+            <div class="content-area">
+                <div id="local-flat-content"></div>
+            </div>
+        </div>
+
+        <div id="ssd" class="tab-content">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="search-ssd" placeholder="Search SSD projects...">
+            </div>
+            <div class="content-area">
+                <div id="ssd-content"></div>
+            </div>
+        </div>
+
+        <div id="local-grouped" class="tab-content">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="search-local-grouped" placeholder="Search local grouped projects...">
+            </div>
+            <div class="content-area">
+                <div id="local-grouped-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Format disk usage for display
+        function formatDiskUsage(usage) {
+            if (!usage || usage.total_bytes === 0) return '0 GB';
+
+            if (usage.total_gb >= 1) {
+                return `${usage.total_gb} GB`;
+            } else {
+                return `${usage.total_mb} MB`;
+            }
+        }
+
+        // Load and parse projects.json
+        async function loadProjects() {
+            try {
+                const response = await fetch('../../projects.json');
+                const data = await response.json();
+
+                // Count projects
+                const localFlat = data.projects.filter(p =>
+                    p.storage.local.exists && p.storage.local.structure === 'flat'
+                ).length;
+                const localGrouped = data.projects.filter(p =>
+                    p.storage.local.exists && p.storage.local.structure === 'grouped'
+                ).length;
+                const ssdProjects = data.projects.filter(p => p.storage.ssd.exists).length;
+
+                // Update stats
+                document.getElementById('total-count').textContent = data.projects.length;
+                document.getElementById('local-flat-count').textContent = localFlat;
+                document.getElementById('local-grouped-count').textContent = localGrouped;
+                document.getElementById('ssd-count').textContent = ssdProjects;
+                document.getElementById('last-updated').textContent = new Date(data.config.last_updated).toLocaleString();
+
+                // Update tab counts
+                document.getElementById('tab-local-flat-count').textContent = `(${localFlat})`;
+                document.getElementById('tab-ssd-count').textContent = `(${ssdProjects})`;
+                document.getElementById('tab-local-grouped-count').textContent = `(${localGrouped})`;
+
+                // Update disk usage
+                if (data.config.disk_usage) {
+                    document.getElementById('local-flat-disk').textContent = formatDiskUsage(data.config.disk_usage.local_flat);
+                    document.getElementById('local-grouped-disk').textContent = formatDiskUsage(data.config.disk_usage.local_grouped);
+                    document.getElementById('ssd-disk').textContent = formatDiskUsage(data.config.disk_usage.ssd);
+                }
+
+                renderLocalFlat(data);
+                renderSSD(data);
+                renderLocalGrouped(data);
+
+            } catch (error) {
+                document.getElementById('local-flat-content').innerHTML = `
+                    <div class="error">
+                        <strong>Error loading projects.json</strong><br>
+                        ${error.message}<br><br>
+                        Run <code>ruby video-asset-tools/bin/generate_manifest.rb</code> to generate the manifest.
+                    </div>
+                `;
+            }
+        }
+
+        function renderLocalFlat(data) {
+            const localFlat = data.projects.filter(p =>
+                p.storage.local.exists && p.storage.local.structure === 'flat'
+            );
+
+            if (localFlat.length === 0) {
+                document.getElementById('local-flat-content').innerHTML = `
+                    <div class="empty-state">No local flat projects found</div>
+                `;
+                return;
+            }
+
+            const html = `
+                <div class="project-list">
+                    ${localFlat.map(project => {
+                        const backedUp = project.storage.ssd.exists;
+                        const hasHeavy = project.storage.local.has_heavy_files;
+
+                        return `
+                            <div class="project-item ${backedUp ? 'backed-up' : 'not-backed-up'}">
+                                <div class="project-info">
+                                    <div class="project-name">${project.id}</div>
+                                    <div class="project-details">
+                                        ${hasHeavy ? '📹 Has video files' : '📄 Metadata only'} •
+                                        ${backedUp ? 'Backed up to SSD' : 'Not backed up'}
+                                    </div>
+                                </div>
+                                <span class="badge ${backedUp ? 'success' : 'warning'}">
+                                    ${backedUp ? '✓ Backed up' : '⚠ Not backed up'}
+                                </span>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+
+            document.getElementById('local-flat-content').innerHTML = html;
+        }
+
+        function renderSSD(data) {
+            const ssdProjects = data.projects.filter(p => p.storage.ssd.exists);
+
+            // Group by range
+            const grouped = {};
+            ssdProjects.forEach(project => {
+                const range = project.storage.ssd.path.split('/')[0];
+                if (!grouped[range]) grouped[range] = [];
+                grouped[range].push(project);
+            });
+
+            const html = Object.keys(grouped).sort().map(range => {
+                const projects = grouped[range];
+                const groupId = `ssd-group-${range}`;
+
+                return `
+                    <div class="collapsible-group">
+                        <div class="group-header" onclick="toggleGroup('${groupId}')">
+                            <span>${range}</span>
+                            <span class="group-count">${projects.length} projects</span>
+                        </div>
+                        <div id="${groupId}" class="group-content">
+                            <div class="project-list">
+                                ${projects.map(project => {
+                                    const fullyMigrated = !project.storage.local.exists;
+                                    const localFlat = project.storage.local.structure === 'flat';
+
+                                    return `
+                                        <div class="project-item ${fullyMigrated ? 'fully-migrated' : 'backed-up'}">
+                                            <div class="project-info">
+                                                <div class="project-name">${project.id}</div>
+                                                <div class="project-details">
+                                                    ${fullyMigrated ? '📦 SSD only' : `📂 Also in local ${localFlat ? '(flat)' : '(grouped)'}`}
+                                                </div>
+                                            </div>
+                                            <span class="badge ${fullyMigrated ? 'secondary' : 'success'}">
+                                                ${fullyMigrated ? 'Fully migrated' : 'Partially migrated'}
+                                            </span>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('ssd-content').innerHTML = html;
+        }
+
+        function renderLocalGrouped(data) {
+            const localGrouped = data.projects.filter(p =>
+                p.storage.local.exists && p.storage.local.structure === 'grouped'
+            );
+
+            if (localGrouped.length === 0) {
+                document.getElementById('local-grouped-content').innerHTML = `
+                    <div class="empty-state">
+                        <p>📦 No grouped metadata yet</p>
+                        <p style="margin-top: 10px; font-size: 14px;">Run <code>ruby sync_from_ssd.rb</code> to sync metadata from SSD</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Group by range (extract from SSD path since local grouped mirrors it)
+            const grouped = {};
+            localGrouped.forEach(project => {
+                const range = project.storage.ssd.path.split('/')[0];
+                if (!grouped[range]) grouped[range] = [];
+                grouped[range].push(project);
+            });
+
+            const html = Object.keys(grouped).sort().map(range => {
+                const projects = grouped[range];
+                const groupId = `local-group-${range}`;
+
+                return `
+                    <div class="collapsible-group">
+                        <div class="group-header" onclick="toggleGroup('${groupId}')">
+                            <span>${range}</span>
+                            <span class="group-count">${projects.length} projects</span>
+                        </div>
+                        <div id="${groupId}" class="group-content">
+                            <div class="project-list">
+                                ${projects.map(project => {
+                                    const hasHeavy = project.storage.local.has_heavy_files;
+                                    const onSSD = project.storage.ssd.exists;
+
+                                    return `
+                                        <div class="project-item ${hasHeavy ? 'not-backed-up' : 'backed-up'}">
+                                            <div class="project-info">
+                                                <div class="project-name">${project.id}</div>
+                                                <div class="project-details">
+                                                    ${hasHeavy ? '⚠️ Has heavy files (should be flat)' : '📄 Light files only'} •
+                                                    ${onSSD ? 'On SSD' : 'Not on SSD'}
+                                                </div>
+                                            </div>
+                                            <span class="badge ${hasHeavy ? 'warning' : 'success'}">
+                                                ${hasHeavy ? 'Has heavy files' : 'Light files only'}
+                                            </span>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('local-grouped-content').innerHTML = html;
+        }
+
+        function toggleGroup(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('open');
+        }
+
+        // Search functionality
+        function setupSearch() {
+            ['local-flat', 'ssd', 'local-grouped'].forEach(tab => {
+                const searchInput = document.getElementById(`search-${tab}`);
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const content = document.getElementById(`${tab}-content`);
+
+                    // Get all project items
+                    const projectItems = content.querySelectorAll('.project-item');
+                    const groups = content.querySelectorAll('.collapsible-group');
+
+                    // Search in flat lists
+                    projectItems.forEach(item => {
+                        const projectName = item.querySelector('.project-name').textContent.toLowerCase();
+                        if (projectName.includes(searchTerm)) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    // Search in grouped lists
+                    groups.forEach(group => {
+                        const groupProjectItems = group.querySelectorAll('.project-item');
+                        let hasVisibleProjects = false;
+
+                        groupProjectItems.forEach(item => {
+                            const projectName = item.querySelector('.project-name').textContent.toLowerCase();
+                            if (projectName.includes(searchTerm)) {
+                                item.style.display = 'flex';
+                                hasVisibleProjects = true;
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+
+                        // Show/hide entire group based on whether it has visible projects
+                        group.style.display = hasVisibleProjects ? 'block' : 'none';
+                    });
+                });
+            });
+        }
+
+        // Load on page load
+        loadProjects().then(() => {
+            setupSearch();
+        });
+    </script>
+</body>
+</html>
